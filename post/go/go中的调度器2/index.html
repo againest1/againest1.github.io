@@ -185,16 +185,12 @@
 <p>M的数量最大为GOMAXPROCS。未绑定P的阻塞状态M会进入休眠。</p>
 <p>当一个新G产生，或者M进入系统调用，或者M从idle转入busy，当最后一个自旋线程发现工作，会唤醒一个新的自旋线程，确保最少有一个自旋状态的M(除非所有P都处于busy)，这样出现可运行G时，可以立即运行。而且避免线程trashing</p>
 <h3 id="正常运行状态">正常运行状态</h3>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/3.jpg" alt=""></p>
 <p>灰色部分的G处于非运行状态，但是是runable的，被放置于runequeues队列中。</p>
 <p>为了降低锁竞争，每个P都有独立的本地G队列。</p>
 <p>当G被创建，或者一个已经存在的可运行G时, G会被推到当前P的可运行G 列表末尾。当P结束执行G时，它首先尝试从自己的G列表中拿出一个G。</p>
 <h3 id="系统调用时发生了什么">系统调用时发生了什么？</h3>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/4.jpg" alt=""></p>
 <p>当发生系统调用时，M0线程阻塞，这个时候，需要通过P把任务队列挂载到其他线程中。使得其他线程可以运行这个P。</p>
 <p>调度器需要确保有足够的线程来运行所有的P。图中的M1可能是新创建的，也可能从idle 线程池取出。</p>
 <p>而正在执行系统调用M0会持有在做系统调用的G0，因为它理论上仍在执行，只是被系统阻塞了。</p>
@@ -208,9 +204,7 @@
 <p>当某个P的runequeue全部执行完时，会从全局运行队列偷取任务。所有的P也会周期性的检查全局的runqueues。以防止全局队列中的协程饿死。</p>
 <p>侧面也可以说明go是多线程的，即使GOMAXPROCS是1.</p>
 <h3 id="偷取任务">偷取任务</h3>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/5.jpg" alt=""></p>
 <p>当一个P执行完了所有调度给它的G，它会尝试从全局队列中获取G，如果全局队列为空，那么会尝试从另一个P的runqueues中偷取一半的任务。这样确保每个P都在运行任务。</p>
 
     </div>

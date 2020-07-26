@@ -156,10 +156,8 @@
 </div>
     <div class="post-content">
       <p>goroutine生命周期中包含了各种状态的变换，弄清楚了这些状态及状态切换的原来，对搞清楚go调度器会非常有帮助。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-<p>Gidle在go调度器没有真正被用到所以忽略。runtime创建goroutine，就会将其状态设置为Grunnable并加入到任务队列中。所以从Grunnable开始介绍</p>
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/15.jpg" alt="">
+Gidle在go调度器没有真正被用到所以忽略。runtime创建goroutine，就会将其状态设置为Grunnable并加入到任务队列中。所以从Grunnable开始介绍</p>
 <h2 id="1-grunnable">1. Grunnable</h2>
 <p>goroutine在下列几种情况会设置为Grunnable状态：</p>
 <h3 id="11-创建goroutine">1.1 创建goroutine</h3>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Go语言拾遗 - Noises</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="againest1" /><meta name="description" content="go语言中有一些被人误用或忽视的细节。 这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。 本文内容" /><meta name="keywords" content="rust, go, vrp, algorithm, Logistics optimization, mathematics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://againest1.github.io/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.6a6bb26b96de99ed1f13dbda602bfd46e745052a1dbd2d693359a97e34435fd3.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Go语言拾遗" />
+<meta property="og:description" content="go语言中有一些被人误用或忽视的细节。 这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。 本文内容" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://againest1.github.io/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/" />
+<meta property="article:published_time" content="2020-03-06T23:11:05+08:00" />
+<meta property="article:modified_time" content="2020-03-06T23:11:05+08:00" />
+<meta itemprop="name" content="Go语言拾遗">
+<meta itemprop="description" content="go语言中有一些被人误用或忽视的细节。 这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。 本文内容">
+<meta itemprop="datePublished" content="2020-03-06T23:11:05+08:00" />
+<meta itemprop="dateModified" content="2020-03-06T23:11:05+08:00" />
+<meta itemprop="wordCount" content="2699">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go语言拾遗"/>
+<meta name="twitter:description" content="go语言中有一些被人误用或忽视的细节。 这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。 本文内容"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Noises</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Noises</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Go语言拾遗</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-06 </span>
+        
+          <span class="more-meta"> 2699 words </span>
+          <span class="more-meta"> 6 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>go语言中有一些被人误用或忽视的细节。</p>
+<p>这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。</p>
+<p>本文内容不包含reflect及unsafe内容。</p>
+<ol>
+<li>几种创建变量别名的情形：</li>
+</ol>
+<ul>
+<li>对一个变量取地址操作</li>
+<li>当copy一个引用类型(如slice，map，channel，function，pointer)</li>
+<li>当copy一个包含引用类型的array，struct，或interface时</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>go语言的垃圾回收器需要找到每一个变量的访问者，也就是必须知道一个变量的所有别名。</p>
+<!-- raw HTML omitted -->
+<ol start="2">
+<li>
+<p>在考虑性能优化的时，需要记住逃逸的变量需要在堆上额外分配内存(以及分配时间更长)</p>
+</li>
+<li>
+<p>在赋值之前，赋值语句右边的所有表达式将会先进行求值。</p>
+</li>
+<li>
+<p>某些类型转换会改变值的数据表示：</p>
+</li>
+</ol>
+<ul>
+<li>某些数字类型之间互相转换</li>
+<li>string类型转换成[]byte会allocate一个string的copy</li>
+</ul>
+<ol start="5">
+<li>
+<p>每个文件都可以包含任意数量的init function，并按照声明的顺序初始化。</p>
+</li>
+<li>
+<p>if, for, switch 控制流语句，含有两个词法域：一个是由显式的花括号组成，更外一层是隐式的。包含循环的初始化，条件测试，循环后的迭代。</p>
+</li>
+<li>
+<p>switch或select的分支也有独立的语法块</p>
+</li>
+<li>
+<p>rune类型和int32类型等价，通常表示一个unicode码点</p>
+</li>
+<li>
+<p>byte类型和uint8类型等价，通常表示数值的原始字节表示，而很少用于表示一个整数。</p>
+</li>
+<li>
+<p>为什么内置len函数返回一个有符号int？</p>
+<p>通常我们可能会认为uint无符号类型表示len更合理。事实上用有符号的int，我们可以用来处理逆循环。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ints</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> 
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>     
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ints</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="c1">// 3, 2, 1 
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>​	如果len函数返回是一个无符号类型，那么迭代三次之后i==0时, i—语句将不会产生-1，而是变成一个超大的正整数，ints[i]发生panic</p>
+<ol start="11">
+<li>
+<p>无符号数往往只有在位运算或其它特殊的运算场景才会使用，例如 bit集合、 分析二进制文件格式、或者哈希和加密操作。并不是单纯的表达非负的场合。</p>
+</li>
+<li>
+<p>通常应该优先使用float64类型，因为float32类型的累计计算误差很容易扩散，并且float32能精确表示的正整数并不是很大。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">f</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mi">16777216</span> <span class="c1">// 1&lt;&lt; 24
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">f</span> <span class="o">==</span> <span class="nx">f</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    <span class="c1">// &#34;true&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="13">
+<li>
+<p>浮点数的比较测试需要小心精度问题。</p>
+</li>
+<li>
+<p>字符串的不可变性体现在：</p>
+</li>
+</ol>
+<ul>
+<li>当用字符串变量赋值或者使用+进行追加时，会重新分配新的字符串。</li>
+<li>只能访问，不能用索引对其内部修改。</li>
+<li>copy字符串是低廉的，因为会共享底层数据。同理字符串的切片操作也会共享底层数据。</li>
+</ul>
+<ol start="15">
+<li>
+<p>字符串的索引操作s[i]返回的是字节类型值</p>
+</li>
+<li>
+<p>字符串的切片操作s[i:j]返回的是字符串类型值。</p>
+</li>
+<li>
+<p>range循环在处理字符串的时候，会自动隐式解码UTF8字符串成rune。需要注意的是对于非ASCII，索引更新的步长将超过1个字节。</p>
+</li>
+<li>
+<p>常量是一种表达式，它的求值发生在编译期，而不是在运行期。对常量间进行的运算的结果也是常量。</p>
+</li>
+<li>
+<p>编译器为无类型常量提供更高精度的算术运算；你可以认为至少有256bit的运算精度。</p>
+</li>
+<li>
+<p>%取模运算符的符号和被取模数的符号总是一致的，因此   -5%3 和   -5%-3 结果都是-2。</p>
+</li>
+<li>
+<p>数组的长度是数组类型的一个组成部分，因此[3]int和[4]int是不同数组类型。</p>
+</li>
+<li>
+<p>struct声明时field顺序对类型标识符也有重要影响。顺序不同对应了不同的struct类型。</p>
+</li>
+<li>
+<p>类型S的struct的filed不可以是S类型。但可以是*S指针类型来创建递归的数据结构。</p>
+</li>
+<li>
+<p>struct{} 和[0]int类型的size为0。</p>
+</li>
+<li>
+<p>&ldquo;.&ldquo;操作符应用于struct类型变量或者struct值(例如函数返回值)访问field时，如果&rdquo;.&ldquo;前面的是变量，那么&rdquo;.&ldquo;表示变量，如果前面的是值，.操作符表示一个值。</p>
+</li>
+<li>
+<p>nil slice 没有底层数组，length和capacity都是0。</p>
+</li>
+<li>
+<p>slice切片操作s[i:j]，0 ≤ i≤ j≤ cap(s)，j可以超过len(s)。</p>
+</li>
+<li>
+<p>nil值的slice和空slice行为一致。把nil slice 当成空slice是安全的行为。go函数应当以相同的方式对待nil slice 和长度为0的slice。</p>
+</li>
+<li>
+<p>大部分map操作对于nil map和空map行为一致：如查找，删除，len，range。但当往nil map 中分配一个元素将会导致panic。</p>
+</li>
+<li>
+<p>map的元素不是一个变量，不能进行取地址操作。原因是：map增长可能会rehashing，把存在的元素分配到一个新的空间。可能会导致悬挂指针。</p>
+</li>
+<li>
+<p>map是间接引用，所以元素value值可以是其自身</p>
+</li>
+<li>
+<p>大部分函数使用固定大小的的函数调用栈，而go语言使用可变栈，栈的大小按需增加。</p>
+</li>
+<li>
+<p>函数的零值是nil，调用你一个nil 函数会引发panic</p>
+</li>
+<li>
+<p>当循环中有闭包环境时候(如匿名函数，go 语句)，要注意捕获迭代量可能产生的问题。</p>
+</li>
+<li>
+<p>在一个函数中执行多条defer语句时，他们的执行顺序和声明顺序相反。</p>
+</li>
+<li>
+<p>defer 函数在return更新返回值后立即执行。之后函数再返回给调用者。如果外层函数返回值有名字，defer匿名函数可以捕获函数的返回值，并对返回值进行修改。</p>
+</li>
+<li>
+<p>如果defer函数是nil时，在defer语句执行时不会panic而是在函数真正执行时panic。</p>
+</li>
+<li>
+<p>循环体中的defer可能会有耗尽资源的风险。</p>
+</li>
+<li>
+<p>go的panic机制使得defer函数调用在释放栈之前。注意函数栈的顺序，如果panic发生在defer之前，defer不会生效。</p>
+</li>
+<li>
+<p>当main function返回时，所有的goroutine会被直接终止，然后程序退出。</p>
+</li>
+<li>
+<p>copy 一个channel时或用于参数传递时，只是copy了一个reference。他们指向同一个数据结构。</p>
+</li>
+<li>
+<p>对一个channel进行close操作，并不是进行垃圾回收。当一个channel 不会再访问时，会进行垃圾回收。无论它是否已经关闭。</p>
+</li>
+<li>
+<p>发送方close一个channel是单方面的标记不会再发送任何值。通常只有发送方才会close，如果对对一个receive-only channel关闭会发生panic。发送方也无需关闭每一个channel。只有需要广播接收方时才需要。对一个已经close的channel，再次发送或者再次close会引发panic。</p>
+</li>
+<li>
+<p>当一个channel close之后，接收方不会阻塞，(如果是带buffer的channel，接收完channel最后一个元素之后)，并且会收到一个零值。接收方也可以通过显式的接受bool值，或者用range loop 来判断channel的发送是否结束。</p>
+</li>
+<li>
+<p>从具体类型(包括指针)值赋到接口类型值产生隐式类型转换。并且接口值的动态值部分获得了一份具体类型值的拷贝。如果是*T则获得一份指针的拷贝(接口的细节需要在后续文章中展开讲)。</p>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">againest1</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A81/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Go中的调度器(1)--背景</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/">
+            <span class="next-text nav-default">自下而上谈程序设计中的模块化</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:532322451@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/againest1" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/p/1005051670245715" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/luo-gan-zhong" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://againest1.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">againest1</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Noises</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="againest1" /><meta name="description" content="Noises" /><meta name="keywords" content="rust, go, vrp, algorithm, Logistics optimization, mathematics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://againest1.github.io/" />
+  <link href="https://againest1.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Noises" />
+  <link href="https://againest1.github.io/index.xml" rel="feed" type="application/rss+xml" title="Noises" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.6a6bb26b96de99ed1f13dbda602bfd46e745052a1dbd2d693359a97e34435fd3.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Noises" />
+<meta property="og:description" content="Noises" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://againest1.github.io/" />
+<meta property="og:updated_time" content="2020-03-14T23:00:10+08:00" />
+<meta itemprop="name" content="Noises">
+<meta itemprop="description" content="Noises">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Noises"/>
+<meta name="twitter:description" content="Noises"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Noises</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Noises</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A84/">Go中的调度器(4)--goroutine状态转移</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-03-14 </span>
+      
+        <span class="more-meta"> 1955 words </span>
+        <span class="more-meta"> 4 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      goroutine生命周期中包含了各种状态的变换，弄清楚了这些状态及状态切换的原来，对搞清楚go调度器会非常有帮助。 Gidle在go调度器没
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A84/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A83/">Go中的调度器(3)--GMP具体场景拆解</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-03-13 </span>
+      
+        <span class="more-meta"> 1459 words </span>
+        <span class="more-meta"> 3 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      上一节中列举了一些基本场景来表述概念，我们对场景扩展来看调度器工作细节。我们可以看到 local runqueues和global runqueues是如
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A83/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A82/">Go中的调度器(2)--GMP简介</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-03-09 </span>
+      
+        <span class="more-meta"> 1832 words </span>
+        <span class="more-meta"> 4 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      （接上&hellip;) go中的协程 在Go中，goroutine正表达了协程的概念。 动态栈 每一个os thread都有一个固定大小(2MB)的
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A82/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A81/">Go中的调度器(1)--背景</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-03-08 </span>
+      
+        <span class="more-meta"> 1540 words </span>
+        <span class="more-meta"> 4 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      我们说逻辑控制流是并发的说的是他们在时间上重叠。并发不仅仅局限于操作系统内核，也可以应用于应用程序。 现代操作系统提供了三种基本方法来构建应用
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A81/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/">Go语言拾遗</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-03-06 </span>
+      
+        <span class="more-meta"> 2699 words </span>
+        <span class="more-meta"> 6 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      go语言中有一些被人误用或忽视的细节。 这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。 本文内容
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/">自下而上谈程序设计中的模块化</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-01-03 </span>
+      
+        <span class="more-meta"> 2311 words </span>
+        <span class="more-meta"> 5 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      简介 系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。 架构的形
+    </div>
+    <div class="read-more">
+      <a href="/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/">VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-12-04 </span>
+      
+        <span class="more-meta"> 7125 words </span>
+        <span class="more-meta"> 15 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      论文信息 Title: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows Authors: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$ Publication date: Available online 3 July 2009. DOI: https://doi.org/10.1016/j.cor.2009.06.022 概要 介绍了一个针对VRPTW的模因算法(memetic
+    </div>
+    <div class="read-more">
+      <a href="/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:532322451@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/againest1" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/p/1005051670245715" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/luo-gan-zhong" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://againest1.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">againest1</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>自下而上谈程序设计中的模块化 - Noises</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="againest1" /><meta name="description" content="简介 系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。 架构的形" /><meta name="keywords" content="rust, go, vrp, algorithm, Logistics optimization, mathematics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://againest1.github.io/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.6a6bb26b96de99ed1f13dbda602bfd46e745052a1dbd2d693359a97e34435fd3.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="自下而上谈程序设计中的模块化" />
+<meta property="og:description" content="简介 系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。 架构的形" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://againest1.github.io/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/" />
+<meta property="article:published_time" content="2020-01-03T23:11:05+08:00" />
+<meta property="article:modified_time" content="2020-01-03T23:11:05+08:00" />
+<meta itemprop="name" content="自下而上谈程序设计中的模块化">
+<meta itemprop="description" content="简介 系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。 架构的形">
+<meta itemprop="datePublished" content="2020-01-03T23:11:05+08:00" />
+<meta itemprop="dateModified" content="2020-01-03T23:11:05+08:00" />
+<meta itemprop="wordCount" content="2311">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自下而上谈程序设计中的模块化"/>
+<meta name="twitter:description" content="简介 系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。 架构的形"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Noises</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Noises</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">自下而上谈程序设计中的模块化</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-03 </span>
+        
+          <span class="more-meta"> 2311 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#1-模块性原则">1. 模块性原则</a>
+      <ul>
+        <li><a href="#定义良好的接口"><strong>定义良好的接口</strong></a></li>
+        <li><a href="#难懂与复杂度"><strong>难懂与复杂度</strong></a></li>
+        <li><a href="#分解与模块性"><strong>分解与模块性</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-优雅原则">2. 优雅原则</a></li>
+    <li><a href="#3-紧凑性和正交性">3. 紧凑性和正交性</a>
+      <ul>
+        <li><a href="#紧凑性"><strong>紧凑性</strong></a></li>
+        <li><a href="#正交性"><strong>正交性</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-spot原则">4. SPOT原则</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="简介">简介</h2>
+<p>系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。</p>
+<p>架构的形成是由一系列的决策组成。与代码划分相关的决策我们称为模块化，即: 1.定义系统中的实体以及实体的形式与功能；2. 定义实体的边界。它是系统设计中影响最大的决策。</p>
+<p>本文仅介绍一些与模块化有关的原则及方法。原则是指在大部分情况下有效的基本原理。方法是指在遵循这些基本原则之上，实现目的的手段。</p>
+<h2 id="1-模块性原则">1. 模块性原则</h2>
+<blockquote>
+<p>编写复杂软件的唯一方法是将简单的模块用定义清晰的接口连接起来，这样一来大多数问题只会局限于局部，还可能对局部进行修改而不会破坏整体。</p>
+</blockquote>
+<p>我们谈到模块性（模块化程度），其实是在谈接口。</p>
+<p>接口可以让模块进行替换。模块性越高，系统的灵活性越好。</p>
+<p>这里隐含了一个抽象的要求：尽量缩减模块之间的联系，增加模块内部元素的联系。</p>
+<h3 id="定义良好的接口"><strong>定义良好的接口</strong></h3>
+<blockquote>
+<p>模块之间互相通信使用API(即一组限定数量的，良定义的过程调用和数据结构)，而不是通过暴露内部细节，共享全局变量进行通信。</p>
+</blockquote>
+<p>模块之间的API，形式上或者说从实现层面上的作用是防止模块内部细节泄漏，但取得了另一种更加重要的功能：&ldquo;API定义了整个架构&rdquo;。更准确的理解是&rdquo;<strong>API定义了整个架构的难懂程度</strong>&quot;。</p>
+<h3 id="难懂与复杂度"><strong>难懂与复杂度</strong></h3>
+<p>我们需要对系统的复杂度做一个简单的区分。</p>
+<p>系统的实际复杂度可以简单的分为必要复杂度，表面复杂度，无端复杂度。</p>
+<ul>
+<li>必要复杂度取决于系统想要的功能。要求系统完成的事情越多，系统中的必要复杂度就越大。</li>
+<li>表面复杂度也称为难懂程度。表面复杂度越高，整个系统就难以被人观察和理解，反之就越易懂</li>
+</ul>
+<p>我们希望系统实际复杂度尽量接近必要复杂度,同时又要把表面复杂度控制在人类可以理解的范围之内。</p>
+<p>我们将系统分解成模块，并定义模块间的API，是在<strong>应对表面复杂度</strong>。整体接口的好坏刻画了系统的难懂程度。</p>
+<!-- raw HTML omitted -->
+<p>对待系统实际复杂度时，需要将表面复杂度（难懂程度）和必要复杂度区分对待。如果在理解设计原则，设计方法时不清楚应对的是哪块复杂度，将一些原则和方法用于错误的地方，会起到相反的作用。因为构建系统是一个决策权衡的过程，决策之间不仅有共性，还有更多的矛盾，更有其适用范围。当一个&quot;野生架构师&quot;零散的接触到一些经验化的设计原则，大概率会觉得在放狗屁。比如&quot;少即是多&rdquo;,&ldquo;魔数7&rdquo;。</p>
+<!-- raw HTML omitted -->
+<p>进一步来理解难懂和实际复杂度的关系。难懂是一个描绘人类认知和理解的词，难懂的事物具有较高的表面复杂度。当我们说架构易懂时，我们说的是易管理，有条理…等等，不是对必要复杂度的要求。</p>
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/2.png" alt="Fig.1">
+<img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/1.jpg" alt="Fig.2"></p>
+<p>两张图中的必要复杂度是一样的，完成的功能相同，电学角度输入输出也一样，但是前一种架构要比后一种架构好懂。</p>
+<p>反过来我们有时会提升实际复杂度来降低难懂程度，比如设计高级语言。</p>
+<h3 id="分解与模块性"><strong>分解与模块性</strong></h3>
+<p>我们通常认为模块性(模块化程度)越高,系统就越好。</p>
+<p>事实上模块性增加是有成本的。模块过度分解，使得每一块越小，模块的数量越多，API越复杂，这样系统的复杂度将大量转移至表面复杂度，同时还会有性能上的损失。不少有关设计的书里会给出模块数量和模块大小的建议，比如数量小于7，最佳代码行数200~400。</p>
+<p><strong>关注系统的模块数量和模块大小是正确的分解原则嘛？</strong></p>
+<h2 id="2-优雅原则">2. 优雅原则</h2>
+<blockquote>
+<p>对于架构师来说,如果系统的必备复杂度较低,而且其分解方式能够同时与多个分解平面相匹配,那么该系统就是优雅的</p>
+</blockquote>
+<p>在对系统进行分解和模块化时，有两个核心理念，1.模块的数量2.分解平面。</p>
+<p>举个例子，一辆车如果按形式分解可以分为车身，地盘，传动系统，内部零件等，按功能分解可以分为为动力系统，电力系统，乘驾系统等。形式和功能就是分解平面。分解平面当然不是只有形式、功能还有很多其他的方式，如耦合度，稳定性，外部的交互情况，开发程度，技术变革的速度，人员组织等。这里不对分解平面展开描述。</p>
+<p>在对架构进行分解时，最关键的决策应该是所选的分解平面，而不是分解的模块数量。当分解的结果能与越多的分解平面匹配，那么最终架构就越优雅。</p>
+<h2 id="3-紧凑性和正交性">3. 紧凑性和正交性</h2>
+<p>聚焦回API的设计上来。</p>
+<h3 id="紧凑性"><strong>紧凑性</strong></h3>
+<p><strong>紧凑性就是指设计是否能装进人脑中</strong>。它是对易懂的更强要求。</p>
+<p>对于紧凑性有很多经验化的描述：</p>
+<ul>
+<li>对于一个软件，有经验的用户通常需要操作手册吗？如果不需要，那么这个设计就是紧凑的。</li>
+<li>编程者需要记忆的API数量是否大于七？</li>
+</ul>
+<p>极少有满足严格意义上的紧凑性的设计。有些问题领域本身十分复杂，或有纯性能的要求，可以适度的牺牲紧凑性。不过在宽松意义上它们还是紧凑的。它们的某个功能子集是紧凑的，或是只需要一些简单参考卡片辅助。比如：C和Python是半紧凑的，C++是反紧凑的。</p>
+<h3 id="正交性"><strong>正交性</strong></h3>
+<p><strong>在纯粹的正交设计中，任何操作都是无副作用的；每一个动作只改变一件事，不会对其他造成影响。</strong> 正交性是使设计紧凑的最重要特性之一。</p>
+<p>动作之间互相独立不产生副作用容易避免。容易出现的错误是接口做了多余的事情。例如：代码中有一类常见设计错误，从某一源的数据格式转换到目标格式进行数据读取和解析。设计者会想当然的认为源格式存在于某个磁盘文件中。那么在编写转换函数时可能会多包含打开和读取文件。实际上数据流可能来自于标准输入，网络，等等。</p>
+<h2 id="4-spot原则">4. SPOT原则</h2>
+<p>重复意味着无法复用</p>
+<p>Single Point of Truth ，事实的单点性</p>
+<p>任何一个元素在系统内部都应该有一个唯一，明确权威的表述</p>
+<p>处理同步问题</p>
+<p>原因是当你修改重复点时,往往只改变了一部分而并非全部。通常,这也意味着你对代码的组织没有想清楚。</p>
+<p>常量、表和元数据只应该声明和初始化一次,并导入其它地方。无论何时,重复代码都是危险信号。复杂度是要花代价的,不要为此重复付出。</p>
+<p>重复无法避免时，怎么做</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">againest1</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-01-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Go语言拾遗</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/">
+            <span class="next-text nav-default">VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:532322451@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/againest1" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/p/1005051670245715" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/luo-gan-zhong" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://againest1.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">againest1</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

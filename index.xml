@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Noises</title>
+    <link>https://againest1.github.io/</link>
+    <description>Recent content on Noises</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 14 Mar 2020 23:00:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://againest1.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://againest1.github.io/about/</link>
+      <pubDate>Sun, 26 Jul 2020 18:55:50 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/about/</guid>
+      <description>噪音</description>
+    </item>
+    
+    <item>
+      <title>Go中的调度器(4)--goroutine状态转移</title>
+      <link>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A84/</link>
+      <pubDate>Sat, 14 Mar 2020 23:00:10 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A84/</guid>
+      <description>goroutine生命周期中包含了各种状态的变换，弄清楚了这些状态及状态切换的原来，对搞清楚go调度器会非常有帮助。 Gidle在go调度器没</description>
+    </item>
+    
+    <item>
+      <title>Go中的调度器(3)--GMP具体场景拆解</title>
+      <link>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A83/</link>
+      <pubDate>Fri, 13 Mar 2020 23:00:10 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A83/</guid>
+      <description>上一节中列举了一些基本场景来表述概念，我们对场景扩展来看调度器工作细节。我们可以看到 local runqueues和global runqueues是如</description>
+    </item>
+    
+    <item>
+      <title>Go中的调度器(2)--GMP简介</title>
+      <link>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A82/</link>
+      <pubDate>Mon, 09 Mar 2020 23:00:10 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A82/</guid>
+      <description>（接上&amp;hellip;) go中的协程 在Go中，goroutine正表达了协程的概念。 动态栈 每一个os thread都有一个固定大小(2MB)的</description>
+    </item>
+    
+    <item>
+      <title>Go中的调度器(1)--背景</title>
+      <link>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A81/</link>
+      <pubDate>Sun, 08 Mar 2020 23:00:10 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/go/go%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A81/</guid>
+      <description>我们说逻辑控制流是并发的说的是他们在时间上重叠。并发不仅仅局限于操作系统内核，也可以应用于应用程序。 现代操作系统提供了三种基本方法来构建应用</description>
+    </item>
+    
+    <item>
+      <title>Go语言拾遗</title>
+      <link>https://againest1.github.io/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Fri, 06 Mar 2020 23:11:05 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/go/go%E8%AF%AD%E8%A8%80%E6%8B%BE%E9%81%97/</guid>
+      <description>go语言中有一些被人误用或忽视的细节。 这里只列出了一些一两句话能表达清楚的问题。对于需要对问题展开才能理解清楚的会在后续文章中给出。 本文内容</description>
+    </item>
+    
+    <item>
+      <title>自下而上谈程序设计中的模块化</title>
+      <link>https://againest1.github.io/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Fri, 03 Jan 2020 23:11:05 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/</guid>
+      <description>简介 系统架构设计的一般过程是先观察和理解环境中的复杂度，然后构建易懂的架构，这种架构能使复杂性消减到系统上的工作人员可以理解的程度。 架构的形</description>
+    </item>
+    
+    <item>
+      <title>VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;</title>
+      <link>https://againest1.github.io/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/</link>
+      <pubDate>Wed, 04 Dec 2019 23:11:05 +0800</pubDate>
+      
+      <guid>https://againest1.github.io/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/</guid>
+      <description>论文信息 Title: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows Authors: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$ Publication date: Available online 3 July 2009. DOI: https://doi.org/10.1016/j.cor.2009.06.022 概要 介绍了一个针对VRPTW的模因算法(memetic</description>
+    </item>
+    
+  </channel>
+</rss>

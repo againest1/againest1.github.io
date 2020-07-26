@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34; - Noises</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="againest1" /><meta name="description" content="论文信息 Title: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows Authors: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$ Publication date: Available online 3 July 2009. DOI: https://doi.org/10.1016/j.cor.2009.06.022 概要 介绍了一个针对VRPTW的模因算法(memetic" /><meta name="keywords" content="rust, go, vrp, algorithm, Logistics optimization, mathematics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://againest1.github.io/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.6a6bb26b96de99ed1f13dbda602bfd46e745052a1dbd2d693359a97e34435fd3.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;" />
+<meta property="og:description" content="论文信息 Title: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows Authors: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$ Publication date: Available online 3 July 2009. DOI: https://doi.org/10.1016/j.cor.2009.06.022 概要 介绍了一个针对VRPTW的模因算法(memetic" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://againest1.github.io/post/paper/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%971-a-penalty-based-edge-assembly-memetic-algorithm-for-the-vehicle-routing-problem-with-time-windows/" />
+<meta property="article:published_time" content="2019-12-04T23:11:05+08:00" />
+<meta property="article:modified_time" content="2019-12-04T23:11:05+08:00" />
+<meta itemprop="name" content="VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;">
+<meta itemprop="description" content="论文信息 Title: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows Authors: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$ Publication date: Available online 3 July 2009. DOI: https://doi.org/10.1016/j.cor.2009.06.022 概要 介绍了一个针对VRPTW的模因算法(memetic">
+<meta itemprop="datePublished" content="2019-12-04T23:11:05+08:00" />
+<meta itemprop="dateModified" content="2019-12-04T23:11:05+08:00" />
+<meta itemprop="wordCount" content="7125">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;"/>
+<meta name="twitter:description" content="论文信息 Title: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows Authors: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$ Publication date: Available online 3 July 2009. DOI: https://doi.org/10.1016/j.cor.2009.06.022 概要 介绍了一个针对VRPTW的模因算法(memetic"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Noises</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Noises</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">VRP论文--&#34;A Penalty Based Edge Assembly Memetic Algorithm for the Vehicle Routing Problem With Time Windows&#34;</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-04 </span>
+        
+          <span class="more-meta"> 7125 words </span>
+          <span class="more-meta"> 15 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#论文信息"><strong>论文信息</strong></a></li>
+    <li><a href="#概要"><strong>概要</strong></a></li>
+    <li><a href="#1-介绍"><strong>1. 介绍</strong></a>
+      <ul>
+        <li><a href="#11-临时的无效解以及惩罚函数"><strong>1.1 临时的无效解以及惩罚函数</strong></a></li>
+        <li><a href="#12-可以在o1内计算的惩罚函数"><strong>1.2 可以在O(1)内计算的惩罚函数</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-问题定义和记号"><strong>2. 问题定义和记号</strong></a></li>
+    <li><a href="#3-求解方法"><strong>3. 求解方法</strong></a>
+      <ul>
+        <li><a href="#31-eama概述"><strong>3.1 EAMA概述</strong></a></li>
+        <li><a href="#32-广义cost函数"><strong>3.2 广义cost函数</strong></a></li>
+        <li><a href="#33-eax"><strong>3.3 EAX</strong></a></li>
+        <li><a href="#34-使用的邻域"><strong>3.4 使用的邻域</strong></a></li>
+        <li><a href="#35-repair过程"><strong>3.5 Repair过程</strong></a></li>
+        <li><a href="#36-improve-过程"><strong>3.6 Improve 过程</strong></a></li>
+        <li><a href="#37-生成初始种群"><strong>3.7 生成初始种群</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-计算实验"><strong>4. 计算实验</strong></a>
+      <ul>
+        <li><a href="#41-实验设置"><strong>4.1 实验设置</strong></a></li>
+        <li><a href="#44-惩罚项系数的敏感性分析"><strong>4.4 惩罚项系数的敏感性分析</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#5-结论"><strong>5. 结论</strong></a></li>
+    <li><a href="#6-附录"><strong>6. 附录</strong></a>
+      <ul>
+        <li><a href="#p_twsigma计算">$P_{tw}(\sigma)$计算</a></li>
+        <li><a href="#命题1证明略">命题1(证明略):</a></li>
+        <li><a href="#命题2证明略">命题2(证明略):</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="论文信息"><strong>论文信息</strong></h2>
+<blockquote>
+<p><strong>Title</strong>: A penalty-based edge assembly memetic algorithm for the vehicle routing problem with time windows</p>
+<p><strong>Authors</strong>: $Yuichi\ Nagata^{a,*}, Olli\ Bräysy^b, Wout\ Dullaert^{c,d}$</p>
+<p><strong>Publication date</strong>: Available online 3 July 2009.</p>
+<p><strong>DOI</strong>:  <a href="https://doi.org/10.1016/j.cor.2009.06.022">https://doi.org/10.1016/j.cor.2009.06.022</a></p>
+</blockquote>
+<h2 id="概要"><strong>概要</strong></h2>
+<p>介绍了一个针对VRPTW的模因算法(memetic algorithm)。主要思路是基于已有的EAX算子进行调整，并引入一种惩罚函数来消除由EAX算子产生后代中违反time window和capacity约束的情形。</p>
+<!-- raw HTML omitted -->
+<p>虽然论文介绍的算法整体效率偏低，但依然有借鉴之出。</p>
+<!-- raw HTML omitted -->
+<h2 id="1-介绍"><strong>1. 介绍</strong></h2>
+<p>论文发布时(2009.7.3)SOTA的<strong>精确算法</strong>:  <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>,  <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>,  <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> , <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>;精确算法在小规模下效果不错，在大规模实例下只能解决包含特定结构或者tw约束非常紧的实例。</p>
+<p>论文发布时(2009.7.3)SOTA的<strong>启发式算法</strong>：进化策略 <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>‘<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>, 大规模领域搜索 <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>’<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>‘<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>, 迭代式局部搜索 <sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup>’<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup>, 从多点出发的局部搜索 <sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup>‘<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup>；对于分层的目标通常使用 two-stage 方法<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup>,<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+<p><strong>two-stage approach</strong>: 通常第一个阶段对路线数量最小化，第二阶段对总行驶距离进行最小化。two-stage最大的好处是可以<strong>让我们独立的开发针对减车和减距离不同的算法</strong>。</p>
+<p><strong>模因算法(MA:memethic algorithm)</strong><sup id="fnref:14"><a href="#fn:14" class="footnote-ref" role="doc-noteref">14</a></sup>: 是一种基于种群的并联合演化算法(EA)可以在全局上探索更远，在局部搜索上更加密集。MAs通常被称为混合遗传算法或是遗传局部搜索</p>
+<p><strong>EAX</strong>: the edge assembly crossover，最早用于TSP<sup id="fnref:15"><a href="#fn:15" class="footnote-ref" role="doc-noteref">15</a></sup>‘<sup id="fnref:16"><a href="#fn:16" class="footnote-ref" role="doc-noteref">16</a></sup>’<sup id="fnref:17"><a href="#fn:17" class="footnote-ref" role="doc-noteref">17</a></sup>,然后对CVRP进行适配<sup id="fnref:18"><a href="#fn:18" class="footnote-ref" role="doc-noteref">18</a></sup></p>
+<p><strong>EAMA</strong>: the edge assembly memetic algorithm for the CVRP<sup id="fnref:18"><a href="#fn:18" class="footnote-ref" role="doc-noteref">18</a></sup>. 它也是two-stage。其初始种群个体路线数相同，由一个减车过程产生<sup id="fnref:19"><a href="#fn:19" class="footnote-ref" role="doc-noteref">19</a></sup>，后续有一个减距离的过程。</p>
+<h3 id="11-临时的无效解以及惩罚函数"><strong>1.1 临时的无效解以及惩罚函数</strong></h3>
+<p>这篇论文是在EAMA的基础上将EAX算子增加了对tw约束的适配。在MAs过程中生成同时满足capacity和tw的可行后代解通常是很困难的。因此<strong>允许临时产生一个无效解</strong>是有意义的。通常我们引入一个<strong>惩罚函数</strong>来引导搜索向有效解靠拢。在启发式搜索中这是一个常见的概念。</p>
+<h3 id="12-可以在o1内计算的惩罚函数"><strong>1.2 可以在O(1)内计算的惩罚函数</strong></h3>
+<p>在传统的领域算子下，计算路线的tw惩罚需要O(n)，n为路线中customer数量。这篇论文开发了一个在 <strong>O(1)</strong> 时间内计算tw惩罚函数的方法并且对大多数领域算子都有效。</p>
+<h2 id="2-问题定义和记号"><strong>2. 问题定义和记号</strong></h2>
+<ul>
+<li>
+<p>$G=(V,E)$: VRPTW定义了一个<strong>完全有向图</strong></p>
+</li>
+<li>
+<p>$V=\lbrace0,1,\ldots,N\rbrace$ : 顶点</p>
+</li>
+<li>
+<p>$E=\lbrace (v,w)|v,w \in V(v\ne w)\rbrace$:  边</p>
+</li>
+<li>
+<p>node 0表示 depot， nodes $\lbrace 1,\ldots,N \rbrace$表示customers</p>
+</li>
+<li>
+<p>$q_v (v \in V)$: demand，$q_0 = 0$</p>
+</li>
+<li>
+<p>$s_v$: service time, $s_0=0$</p>
+</li>
+<li>
+<p>$[e_v,l_v]$ : time window</p>
+</li>
+<li>
+<p>$(v,w)$ : edge</p>
+</li>
+<li>
+<p>$d_{vw}$: 两点间行驶距离</p>
+</li>
+<li>
+<p>$c_{vw}$: 两点间行驶时间</p>
+</li>
+<li>
+<p>$Q$: the capacity of vehcile</p>
+</li>
+<li>
+<p>给定一条路线$\langle v_0,v_1,\ldots,v_n,v_{n+1} \rangle$</p>
+<ul>
+<li>路线满足 capacity 约束:
+$\sum_{i=1}^n q_{v_i} \le Q$</li>
+<li>$a_{v_i}$: depart time of $v_i$, defined as follow:</li>
+</ul>
+</li>
+</ul>
+<p>$$
+a_{v_i} =
+\begin{cases}
+\ e_{v_0}, &amp;i=0\\\<br>
+\max\lbrace a_{v_{i-1}} +s_{v_{i-1}}+c_{{v_{i-1}}{v_i}},e_{v_i}\rbrace, &amp;i=1,\ldots,n+1
+\end{cases} \tag{1}\label{1}
+$$</p>
+<ul>
+<li>
+<p>路线满足 tw 约束:$a_{v_i}\le l_{v_i}(i=0,&hellip;,n+1)$</p>
+</li>
+<li>
+<p>$t(r)=\sum_{i=0}^n d_{v_i v_{i+1}}$ : 单条路线行驶距离</p>
+</li>
+<li>
+<p>$\sigma$: 可行解,defined as follow:</p>
+<ul>
+<li><strong>m</strong>: 条可行路线</li>
+<li>每个customer 有且仅有一条路线访问</li>
+<li>$F(\sigma)=\sum_{r=1}^mt(r)$: 解的总行驶距离</li>
+</ul>
+</li>
+<li>
+<p>$e_v+s_v+c_{vw} \ge l_w$ :  不可行边</p>
+</li>
+</ul>
+<h2 id="3-求解方法"><strong>3. 求解方法</strong></h2>
+<p>这篇论文提到的EAMA由 EAMA for CVRP <sup id="fnref:20"><a href="#fn:20" class="footnote-ref" role="doc-noteref">20</a></sup>扩展而来。最主要的特征是：</p>
+<ul>
+<li>先用EAX算子产生可能违反约束的临时后代解；</li>
+<li>再进行一个基于localsearch的repair过程使得临时的不可行解在广义的cost function(包含总距离和惩罚函数)下有所改进；</li>
+<li>然后遵循标准的MA过程进行a simple localsearch 尝试改进得到的可行解。</li>
+</ul>
+<h3 id="31-eama概述"><strong>3.1 EAMA概述</strong></h3>
+<!-- raw HTML omitted -->
+<p>EAMA主要过程
+<img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig1.The_penalty-based_memetic_algorithm.jpeg" alt="Fig.1" title="Fig.1 Thepenalty based_memetic algorithm"></p>
+<!-- raw HTML omitted -->
+<p><strong>m</strong>: 用车数，注意，所有父代的用车数都为m</p>
+<p><strong>RM</strong><sup id="fnref:19"><a href="#fn:19" class="footnote-ref" role="doc-noteref">19</a></sup>: route minimization heuristic for VRPTW.</p>
+<p><strong>子代替换策略</strong>: 从$N_{ch}$中的best替换 $p_A$。这种替换策略为了保持种群中的多样性，所以best并不替换种群中最差的个体。</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>随机性体现在: (1) 对父代随机排序 (2) EAX (2) Repair (2) Improve</p>
+</li>
+<li>
+<p>这种随机比较盲目</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<dl>
+<dt><strong>EAX的成熟度与终止策略</strong></dt>
+<dd>
+<p>EAX使用两种策略 <strong>single</strong> 和 <strong>block</strong>。先使用 single 策略，如果种群中的best在连续$g_{max}$代后未改进，则更换成block策略，同样连续$g_{max}$代无改进则终止迭代(R)。</p>
+</dd>
+</dl>
+<h3 id="32-广义cost函数"><strong>3.2 广义cost函数</strong></h3>
+<p>$$F_g(\sigma)=F(\sigma)+\alpha\cdot P_c(\sigma)+\beta\cdot P_{tw}(\sigma) \tag{2}$$
+$F(\sigma)$: 总行驶距离</p>
+<p>$P_c(\sigma)$: capacity惩罚项, 在传统的领域算子(如$\text{2-opt}^*$,Or-Exchange,Relocation,Exchange<sup id="fnref:21"><a href="#fn:21" class="footnote-ref" role="doc-noteref">21</a></sup>)下计算时间为 <strong>O(1)</strong>，为解中超出capacity的总和, 定义如下:
+$$
+P_c(\sigma)=\sum_{r=1}^m\lbrace\sum_{v\in {c u s t}(r)}q_v-Q,0\rbrace\tag{3}
+$$</p>
+<p>$P_{tw}(\sigma)$: tw惩罚项</p>
+<h4 id="标准的tw惩罚项-和新的tw惩罚项比较"><strong>标准的TW惩罚项 和新的TW惩罚项比较:</strong></h4>
+<!-- raw HTML omitted -->
+<p>a. 标准的tw惩罚项计算, b. O(1)的tw惩罚项计算，方括号表示tw, 圆点表示$a_v$和$\tilde a_v$，箭头表示tw惩罚(delay)。
+<img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig2.Time_tables_of_a_route_computed_by_1_and_4.png" alt="Fig.2" title="s">
+<strong>Fig 2</strong></p>
+<!-- raw HTML omitted -->
+<p><strong>标准的路线tw惩罚项</strong>定义: $\sum_{i=0}^{n+1} \max \lbrace a_{v_i} - l_{v_i}\rbrace$, $a_{v_i}$定义见$\eqref{1}$，当发生neighborhood move时, 计算时间为 O(n).</p>
+<p><strong>新的tw惩罚项</strong>描述如下</p>
+<p>$\tilde a_{v_i}$: extended depart time，定义如下:($a_{v_i}^\prime$: extended arrival time)
+$$
+\begin{array}
+\tilde a_{v_i}^\prime =
+\begin{cases}
+\ e_0, &amp;i=0\\\<br>
+\tilde a_{v_{i-1}} +s_{v_{i-1}}+c_{v_{i-1} v_i} &amp; i=1,\ldots,n+1
+\end{cases}\\\<br>
+\tilde a_{v_i} =
+\begin{cases}
+\max\lbrace \tilde a_{v_i}^\prime,e_{v_i}\rbrace, &amp;if\ \tilde a_{v_i}^\prime\le l_{v_i} \\\<br>
+\tilde l_{v_i} &amp;if\ \tilde a_{v_i}^\prime\gt l_{v_i}
+\end{cases}
+\end{array}\tag{4}\label{4}
+$$
+路线的tw惩罚：
+$$
+TW(r)=\sum_{i=0}^{n+1}\max\lbrace \tilde a_{v_i}^\prime - l_{v_i},0\rbrace\tag{5}\label{5}
+$$
+解的tw惩罚项：$P_{t w}(\sigma)=\sum_{r=1}^m TW(r)$</p>
+<!-- raw HTML omitted -->
+<pre><code>1. 当路线是可行的时候,depart time在两种计算方式下相等, $\tilde a_{v_i} = a_{v_i}$
+2. 如果某个node出现$\tilde a_{v_i}^\prime\gt l_{v_i}$,tw约束被违反了，也就是产生了一个delay。
+3. 我们假设在记录惩罚$(\tilde a_{v_i}^\prime - l_{V_i})$的同时消除这个惩罚(delay)，即 depart time 可以前移到end time $l_{v_i}$
+4. 如Fig 2中的一段path: $\langle v2,v3,v4\rangle$ 如果v2没有发生delay，那么v3,v4也不会发生delay，在新的计算方式中，v3,v4上的惩罚并不会记录。  
+</code></pre>
+<!-- raw HTML omitted -->
+<h4 id="新的tw惩罚项优势"><strong>新的TW惩罚项优势:</strong></h4>
+<ul>
+<li>对于传统的neighborhood move,$P_{t w}(\sigma)$ 能在O(1)时间内计算,证明见 <a href="#1">命题1</a></li>
+<li>能够恰当的评估一个优良的局部路径的TW约束。</li>
+</ul>
+<h3 id="33-eax"><strong>3.3 EAX</strong></h3>
+<p>EAX允许产生一个违反约束的子代。主要分为5个步骤，如下:</p>
+<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig3.EAX_steps.jpeg" alt="Fig.3"></p>
+<!-- raw HTML omitted -->
+<p><strong>Step 1. [find difference graph $G_{A B}$]</strong></p>
+<ul>
+<li>$G_{A B}=(V,E_A\cup E_B\setminus E_A\cap E_B)$</li>
+</ul>
+<p><strong>Step 2. [generate AB-cycles]</strong></p>
+<p>AB-cycle 的形成过程:</p>
+<ul>
+<li>从$G_{A B}$ 中随机选取一点为起点，依次按顺$p_A$方向，逆$p_B$方向选边，直到AB-cycle形成。</li>
+<li>当node是custoemr时，可选的边是唯一确定的，当node是depot时,则随机选取一条边。</li>
+<li>每次找到AB-cycle之后，相应的边从$G_{A B}$中移除。</li>
+<li>持续这个过程直到$G_{A B}$中所有边都消失。</li>
+</ul>
+<p><strong>Step 3. [construct E-set]</strong></p>
+<ul>
+<li>
+<p><em>Single</em> 策略: 随机选择一个 single AB-cycle</p>
+</li>
+<li>
+<p><em>Block</em> 策略: 1. 随机选择一个single AB-cycle作为center AB-cycle. 2. 此外，再选择一个AB-cycle，要求至少和center AB-cycle共享一个customer node，并且node数少于center AB-cycle。</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>本质上，single 策略更适合相对局部的改进，而block 策略对全局的改进更有效。毕竟涉及的点更多。</p>
+<!-- raw HTML omitted -->
+<p><strong>Step 4. [Apply E-set to $p_A$]</strong></p>
+<ul>
+<li>
+<p>remove E-set$\cap E_A$</p>
+</li>
+<li>
+<p>add E-set$\cap E_B$</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>生成的临时解，含有m条从depot出发的路线和可能存在1个以上的subtours(不经过depot)</p>
+<!-- raw HTML omitted -->
+<p><strong>Step 5. [subtour-connect]</strong></p>
+<ul>
+<li>
+<p>随机选取一个subtour，使用$\text{2-opt}^*$ moves<sup id="fnref:22"><a href="#fn:22" class="footnote-ref" role="doc-noteref">22</a></sup>.（在subtour 和 tour中各选择一条边移除，且引入两条新的边，生成一条新路线，并保持方向一致。）</p>
+</li>
+<li>
+<p>尝试所有的移除组合，并使得delta cost 最小</p>
+</li>
+<li>
+<p>持续这个过程直到所有subtour都被连接</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>这里delta cost 只考虑距离</p>
+</li>
+<li>
+<p>如果使得delta cost最小的move不是唯一，则重复step 3-5。？？？？</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>EAX for VRPTW 和 EAX for CVRP 的区别</strong></p>
+<p>和EAX for CVRP相比，最大的不同是 EAX for CVRP是实施在一个<strong>无向图</strong>上，而EAX for VRPTW实施在<strong>有向图</strong>上。</p>
+<p>要保证 step 4 生成的临时解有效需要符合两个条件:</p>
+<ol>
+<li>每一个customer node都一个indegree和一个outdegree</li>
+<li>与depot关联的有m条路线</li>
+</ol>
+<p>经过step1,2,3，从 $p_B$ 继承的边的方向，保证了step4中临时解的有效性。</p>
+<p>相对的EAX for CVRP 生成的临时解不需要考虑方向(AB-cycle的形成不考虑方向)如下图:</p>
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig4.png" alt="Fig4"></p>
+<p>根据是否关心放心，可以把EAX分别称为asymmetric EAX(<strong>A-EAX</strong>)和symmetric EAX(<strong>S-EAX</strong>)</p>
+<!-- raw HTML omitted -->
+<p>虽然S-EAX也可以用于VRPTW（例如通过路线中的边的方向选举），但是A-EAX能尽可能维持了路线中customer中的原有顺序。这将大大减少违反TW约束的情况（对Capacity 约束无帮助）。</p>
+<!-- raw HTML omitted -->
+<h3 id="34-使用的邻域"><strong>3.4 使用的邻域</strong></h3>
+<p>repair过程和improve过程都是基于传统领域的两种不同的hill-climbing 方法。先定义使用到的领域。</p>
+<p>$N(v,\sigma)$：表示与customer v 移动有关的子邻域，有如下 4 种:</p>
+<ul>
+<li>$\text{2-opt}^*(v,\sigma)$:
+<ul>
+<li>Remove ($v, v^-$) and ($w, w^+$), and add ($v,w$) and ($v^−, w^+$).</li>
+<li>Remove ($v,v^+$) and$ (w, w^−)$, and add$ (v, w)$ and $(v^+, w^−)$.</li>
+</ul>
+</li>
+<li>$\text{Out-Relocate}(v,\sigma)$: 将 $v$ 插入 $w$ 之前或 $w$ 之后
+<ul>
+<li>Insert $v$ between $w$ and $w^−$, and link $v^−$and $v^+$.</li>
+<li>Insert $v$ between $w$ and $w^+$, and link $v^−$and $v^+$.</li>
+</ul>
+</li>
+<li>In-Relocate$(v,\sigma)$: 将 $w$ 插入 $v$ 之前或 $v$ 之后
+<ul>
+<li>Insert $w$ between $v$ and $v^−$, and link $w^−$and $w^+$.</li>
+<li>Insert $w$ between $v$ and $v^+$, and link $w^−$ and $w^+$.</li>
+</ul>
+</li>
+<li>Exchange$(v,\sigma)$:  $v$ 和 $w^-$ 交换或者$v$ 和 $w^+$ 交换
+<ul>
+<li>Insert $v$ between $w$ and $(w^−)^−$, and insert $w^−$between $v^−$and $v^+$.</li>
+<li>Insert $v$ between $w$ and $(w^+)^+$, and insert $w^+$between $v^+$and $v^-$.</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>w表示在customer v临近的$N_{near}$个customers内的某个customer，$N_{near}$是一个参数，通常设置为50。</p>
+</li>
+<li>
+<p>$v^-(w^-)$和$v^+(w^+)$分别表示前驱和后继，可以是depot或者customer。</p>
+</li>
+<li>
+<p>$\text{2-opt}^*$必须是两条不同的路线，其他子邻域可以是相同的路线</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="35-repair过程"><strong>3.5 Repair过程</strong></h3>
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig5.png" alt="Fig 5"></p>
+<p>Step 1: 随机选择一条不可行路线 r (违反capactiy或tw).</p>
+<p>Step 2: 令 $v \in r$ ，搜索可能的 $N(v,\sigma)$ 得到新的solution $\sigma^\prime$ 使得：</p>
+<ol>
+<li>只接收对整个solution的惩罚项有所改进的solution($\alpha\cdot \Delta P_c(\sigma)+\beta\cdot\Delta P_{tw}(\sigma)&lt;0$)</li>
+<li>使广义的cost function最小</li>
+</ol>
+<p>Step 3: 如果在Step 2 中，路线 r 不存在$v$ 使得 $N(v,\sigma)$ 得到的路线r可行，意味着不可能获得可行解。这个时候放弃repair过程</p>
+<p>Step 4: 重复Step1,2直到所有路线都可行。</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>Repair过程不会采用In-Relocate neighborhood，因为不会对惩罚项有改进。</li>
+<li>广义cost function能在O(1)内计算出。$P_c(\sigma)$ computed in O(1)<sup id="fnref:21"><a href="#fn:21" class="footnote-ref" role="doc-noteref">21</a></sup>，$P_{t w}(\sigma)$ computed in O(1)见 <a href="#1">命题1</a></li>
+<li>为了减少迭代次数，和避免大面积的修改继承的边。lines 3, 4采用best-acceptance 策略。</li>
+<li>邻域搜索可能会占用大量的计算时间，因此搜索的时候进行一些限制(具体细节见<a href="#2">命题2</a>)
+<ul>
+<li>Step 1中优先选择tw不可行的路线 。</li>
+<li>如果选择的是tw不可行路线 r，Step 2 中对路线r 本身的惩罚项没有改进的move将被忽略。判断某个move是否该被忽略计算时间为O(1)。</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="36-improve-过程"><strong>3.6 Improve 过程</strong></h3>
+<!-- raw HTML omitted -->
+<p>如果repair过程产生<strong>可行解</strong>，接下来进行 Improve local search。如下：</p>
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig6.png" alt="Fig6"></p>
+<!-- raw HTML omitted -->
+<p>Step 1: 初始化 $V_{n e w}$ ：相对于$p_A$ 发生改变的路线上而引入的新的customer的集合。(即所有的E-set中的customer，以及neiborhood move 所涉及的点)。细节见<sup id="fnref:20"><a href="#fn:20" class="footnote-ref" role="doc-noteref">20</a></sup></p>
+<p>Step 2: 随机选择邻域$N(v,\sigma)$ ,$v \in V_{n e w}$ ，只要$F(\sigma ^\prime) &lt; F(\sigma)$ 则接受（使行驶距离变小）</p>
+<p>Step 3: 重复Step1, 2 ，直到没有move 可以改进</p>
+<h3 id="37-生成初始种群"><strong>3.7 生成初始种群</strong></h3>
+<p>route minimization(RM) for VRPTW<sup id="fnref:19"><a href="#fn:19" class="footnote-ref" role="doc-noteref">19</a></sup>（ 用于决定用车数m和生成初始种群），详细过程如下:</p>
+<p>Step 1: 一个customer单独分配一辆车作为初始解。</p>
+<p>Step 2: 随机选择一条路线摧毁，路线中的cutomer临时放入ejection poll(EP)中。</p>
+<p>Step 3: 不断的将EP中的customer 在不违反capacity和tw 约束的情况下，插回路线中。</p>
+<p>Step 4: 如果EP中的某个custoemr不存在可插入位置，那么从现存路线中弹出一些customers，为该customer创建出一个可插入位置。(被弹出的customers加入到EP)</p>
+<p>Step 5: 不断重复Step 2-4。直到终结条件满足。</p>
+<p>Step 6: 如果是决定用车数m，RM的终结条件为</p>
+<ul>
+<li>m 达到lower bound $\lceil \sum _{v=1}^N q_v/Q\rceil$</li>
+<li>或者执行时间超过限制$T_1$(通常$T_1$ = 10 min)。</li>
+<li>或者持续$T_1^\prime$(&lt;$T_1$)内，EP 的customer数量大于等于$n_u$(通常$n_u$=5)，这种情况下用车数不太可能再减少。</li>
+</ul>
+<p>Step 7: 一旦用车数m确定, 其他独立的RM过程（为了生成初始种群）也确定了终结条件为</p>
+<ul>
+<li>用车数达到m</li>
+<li>执行时间超过$T_1$</li>
+</ul>
+<p>为了生成初始种群会不断的运行RM过程，直到$N_{p o p}$个solution产生。如果超过$T_{t o t a l}$时间， 如果有效解的数量不足，将进行一些复制。</p>
+<!-- raw HTML omitted -->
+<p>Step 4.中 弹出customer的细节并没有描述，类似于guided local search <sup id="fnref:23"><a href="#fn:23" class="footnote-ref" role="doc-noteref">23</a></sup></p>
+<!-- raw HTML omitted -->
+<h2 id="4-计算实验"><strong>4. 计算实验</strong></h2>
+<h3 id="41-实验设置"><strong>4.1 实验设置</strong></h3>
+<p>EAMA参数:</p>
+<ul>
+<li>$N_{p o p} = \lceil 20000/N\rceil$, $N_{c h}$ = 20 , $g_{m a x}$ = 50</li>
+</ul>
+<p>广义cost function参数:</p>
+<ul>
+<li>$\alpha = 1.0$ , $\beta = 1.0$</li>
+</ul>
+<p>neighborhood参数:</p>
+<ul>
+<li>$N_{n e a r}$ = 50</li>
+</ul>
+<p>RM参数:</p>
+<ul>
+<li>$T_1 = 10\ min$, $T <em>1^\prime = {N/10}s$ , $T</em>{total}= NN_{pop}/400 \ min$ , $n_u = 5$</li>
+</ul>
+<p>由于这篇论文描述的算法整体效率不高，所以详细的计算结果没有太大的参考意义。故省略</p>
+<h3 id="44-惩罚项系数的敏感性分析"><strong>4.4 惩罚项系数的敏感性分析</strong></h3>
+<p><img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/table9.png" alt=""></p>
+<p>Table 9 分别对计算效果和计算时间的影响。</p>
+<ul>
+<li>$\alpha$ 和$\beta$ 的取值对计算效果的影响在0.1%内。</li>
+<li>对计算时间的影响较大，主要表现在repair过程和local search 过程的trade-off。如果提升惩罚项系数能减少repair过程的迭代数，生成的临时可行解的质量降低，再后续的Improve过程迭代数反而会上升。</li>
+</ul>
+<h2 id="5-结论"><strong>5. 结论</strong></h2>
+<p>略</p>
+<h2 id="6-附录"><strong>6. 附录</strong></h2>
+<h3 id="p_twsigma计算">$P_{tw}(\sigma)$计算</h3>
+<p><a href="#32-cost">3.2</a>  中等式$\eqref{4},\eqref{5}$ 定义了给定路线$\langle v_0,v_1,…,v_n,v_{n+1}\rangle$的tw惩罚项$TW(r)$。</p>
+<p>我们定义一下node $v_i$ 的forward tw penalty slack，记为$TW_{v_i}^\to$，表示路线上从$v_0$(depot)到$v_i$ 必须补偿的tw惩罚。注意在补偿惩罚后,$v_i$的depart time 可以定义为${\tilde a_{v_i}}$ :
+$$
+TW_{v_i}^\to=\sum_{j=0}^i\max\lbrace \tilde a_{v_j}^\prime - l_{v_j},0\rbrace,\ \ \ \ \ (i=0,&hellip;,n+1)\tag{6}
+$$
+相似的，定义node $v_i$ 的backwark tw penalty slack，记为$TW_{v_i}^\leftarrow$，表示路线上从$v_i$到$v_{n+1}$必须补偿的tw惩罚。先递归的定义一个extened depart time $\tilde z_{v_i}$:
+$$
+\begin{array}
+\tilde z_{v_i}^\prime =
+\begin{cases}
+\ l_0, &amp;i=n+1\\\<br>
+\tilde z_{v_{i+1}} - c_{v_{i} v_{i+1}} -s_{v_i} &amp; i=n,\ldots,0
+\end{cases}\\\<br>
+\tilde z_{v_i} =
+\begin{cases}
+\min\lbrace \tilde z_{v_i}^\prime,l_{v_i}\rbrace, &amp;if\ \tilde z_{v_i}^\prime\ge e_{v_i} \\\<br>
+\tilde e_{v_i} &amp;if\ \tilde z_{v_i}^\prime\lt e_{v_i}
+\end{cases}
+\end{array}\tag{7}
+$$</p>
+<p>$$
+TW_{v_i}^\leftarrow = \sum_{j=i}^{n+1}\max\lbrace e_{v_j}-\tilde z\prime_{v_j},0\rbrace,\ \ \ \ \ \ (i=0,&hellip;,n+1)\tag{8}
+$$</p>
+<p>如下图Fig7. 圆点分别表示forward和backward方式下计算的depart time $\tilde a_v$和$\tilde z_v$
+<img src="https://raw.githubusercontent.com/againest1/figure_bed/master/blog/Fig7.png" alt="Fig7"></p>
+<p>如果$\tilde a_{v_i} \le \tilde z_{v_i}$，没有额外的惩罚引入，否则需要加上惩罚$(\tilde a_{v_i}-\tilde z_{v_i})$，意味着在$v_i$点,depart time可以从$\tilde a_{v_i}$前移至$ \tilde z_{v_i}$</p>
+<!-- raw HTML omitted -->
+<p>$\tilde z_{v_i}$ 的定义表示，路线的可行性以及tw惩罚或者说tw slack，可以从后往前构建。</p>
+<!-- raw HTML omitted -->
+<p>我们可以得到下面三个等式 ：
+$$
+TW(r)=TW_{v_i}^\to + TW_{v_i}^\leftarrow+\max\lbrace\tilde a_{v_i}-\tilde z_{v_i},0\rbrace\tag{9a}
+$$</p>
+<p>$$
+TW(r)=TW_{v_{i-1}}^\to + TW_{v_i}^\leftarrow+\max\lbrace\tilde a_{v_i}^\prime-\tilde z_{v_i},0\rbrace\tag{9b}
+$$</p>
+<p>$$
+TW(r)=TW_{v_{i-1}}^\to + TW_{v_{i-1}}^\leftarrow+\max\lbrace\tilde a_{v_i}^\prime-\tilde z_{v_i}^\prime,0\rbrace\tag{9c}
+$$</p>
+<p>对于整个solution，我们可以维护4个全局的属性$\tilde a_v^\prime$,$\tilde z^\prime_v$,$TW^\to_v$,$TW_v^\leftarrow$，由此neiborhood move 可以在O(1)内计算。也可以引申出两个结论：</p>
+<h3 id="命题1证明略">命题1(证明略):</h3>
+<p>已知两段path:$\langle0,…,x\rangle$,$\langle0,…,y\rangle$，路线$\langle0,…,x,y,…,0\rangle$的惩罚项可以在常数时间内计算。</p>
+<p>已知两段path:$\langle0,…,x\rangle$,$\langle0,…,y\rangle$，路线$\langle0,…,x,v,y,…,0\rangle$的惩罚项可以在常数时间内计算。</p>
+<h3 id="命题2证明略">命题2(证明略):</h3>
+<p>给定一条路线$\langle0,…,v^-,v,v^+,…,0\rangle$，如果$TW_{v^-}^\to + TW_{v^+}^\leftarrow=TW(r)$，那么除了路线内部交换的任何$N(v,\sigma)$ 都不会使这条路线的惩罚项下降。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Chabrier A. Vehicle routing problem with elementary shortest path based column generation. Computers &amp; Operations Research 2006;33(10):2972–90 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Irnich S, Villeneuve D. The shortest path problem with resource constraints and k-cycle elimination. INFORMS Journal on Computing 2006;18(3):391–406. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Jepsen M, Spoorendonk S, Petersen B, Pisinger D. A non-robust branch-and- cut-and-price algorithm for the vehicle routing problem with time windows.Jepsen M, Spoorendonk S, Petersen B, Pisinger D. Subset-row inequalities applied to the vehicle-routing problem with time windows. INFORMS Journal on Operations Research 2008;56(2):479–511 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>Kallehaugea B, Larsenb J, Madsena OBG. Lagrangian duality applied to the vehicle routing problem with time windows. Computers &amp; Operations Research 2006;33(5):1464–87. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>Mester D, Br¨ aysy O. Active guided evolution strategies for large scale vehicle routing problems with time windows. Computers &amp; Operations Research 2005;32(6):1593–614 <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>Homberger J, Gehring H. Two-phase hybrid metaheuristic for the vehicle routing problem with time windows. European Journal of Operational Research 2005;162:220–38. <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p>Bent R, Hentenryck P. A two-stage hybrid local search for the vehicle routing problem with time windows. Transportation Science 2004;38(4):515–30 <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8" role="doc-endnote">
+<p>Pisinger D, Ropke S. A general heuristic for vehicle routing problems. Computers &amp; Operations Research 2007;34(8):2403–35 <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9" role="doc-endnote">
+<p>Prescott-Gagnon E, Desaulniers G, Rousseau L-M. A branch-and-price-based large neighborhood search algorithm for the vehicle routing problem with time windows. Working paper, University of Montreal, Canada; 2007 <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10" role="doc-endnote">
+<p>Ibaraki T, Kubo M, Masuda T, Uno T, Yagiura M. Effective local search algorithms for the vehicle routing problem with general time window constraints. <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11" role="doc-endnote">
+<p>Ibaraki T, Imahori S, Nonobe K, Sobue K, Uno T, Yagiura M. An iterated local search algorithm for the vehicle routing problem with convex time penalty functions. Discrete Applied Mathematics 2008; 156(11):2050–69. <a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:12" role="doc-endnote">
+<p>Lim A, Zhang X. A two-stage heuristic with ejection pools and generalized ejection chains for the vehicle routing problem with time windows. INFORMS Journal on Computing 2007;19(3):443–57 <a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:13" role="doc-endnote">
+<p>Homberger J, Gehring H. Two evolutionary meta-heuristics for the vehicle routing problem with time windows. INFORMS Journal on Computing 1999;37(3):297–318 <a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:14" role="doc-endnote">
+<p>Moscato P. On evolution, search, optimization, genetic algorithms and martial arts towards memetic algorithms. C3P Report 826, California Institute of Technology; 1989. <a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:15" role="doc-endnote">
+<p>Nagata Y, Kobayashi S. Edge assembly crossover: a high-power genetic algorithm for the traveling salesman problem. In: Proceedings of the 7th international conference on genetic algorithms, 1997. p. 450–7. <a href="#fnref:15" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:16" role="doc-endnote">
+<p>Nagata Y. Fast EAX algorithm considering population diversity for traveling salesman problems. In: Proceedings of the 6th international conference on EvoCOP2006, 2006. p. 171–82 <a href="#fnref:16" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:17" role="doc-endnote">
+<p>Nagata Y. New EAX crossover for large TSP instances. In: Proceedings of the 9th international conference on parallel problem solving from nature, 2006. <a href="#fnref:17" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:18" role="doc-endnote">
+<p>Nagata Y. Edge assembly crossover for the capacitated vehicle routing problem. <a href="#fnref:18" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:19" role="doc-endnote">
+<p>Nagata Y, Br¨ aysy O. A powerful route minimization heuristic for the vehicle routing problem with time windows, Operations Research Letters, in press. <a href="#fnref:19" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:20" role="doc-endnote">
+<p>Nagata Y, Br¨ aysy O. Efficient local search limitation strategies for vehicle routing problems. In: Proceedings of the 8th European conference on evolutionary computation in combinatorial optimization, 2008. p. 48–60 <a href="#fnref:20" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:21" role="doc-endnote">
+<p>Kindervater G, Savelsbergh M. Vehicle routing: handling edge exchanges. In: Aarts E, Lenstra JK, editors. Local search in combinatorial optimization. New York: Wiley; 1997. p. 337–60. <a href="#fnref:21" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:22" role="doc-endnote">
+<p>Potvin J-Y, Rousseau J-M. An exchange heuristic for routing problems with time windows. Journal of the Operational Research Society 1995;46:1433–46. <a href="#fnref:22" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:23" role="doc-endnote">
+<p>Voudouris C, Tsang E. Guided local search. In: Glover F, editor. Handbook of metaheuristics. Dordrecht: Kluwer; 2003. p. 185–218. <a href="#fnref:23" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">againest1</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-12-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E8%B0%88%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">自下而上谈程序设计中的模块化</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:532322451@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/againest1" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/p/1005051670245715" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/luo-gan-zhong" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://againest1.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">againest1</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

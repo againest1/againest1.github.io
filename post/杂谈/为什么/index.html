@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="againest1" /><meta name="description" content="过去一年主要在研究VRP及其相关变种问题，也取得了很好的成绩。未来很长一段时间我应该没有机会再去深入这个问题了。感觉有必要做一些总结，特别是" /><meta name="keywords" content="rust, go, vrp, algorithm, Logistics optimization, mathematics" />
+<meta name="author" content="againest1" /><meta name="description" content="过去一年主要在研究VRP及其相关变种问题，取得了一些成果。一直没有好好总结，特别是怎么从工程角度来看待这一问题，还有记录一些未来可拓展的方向" /><meta name="keywords" content="rust, go, vrp, algorithm, Logistics optimization, mathematics" />
 
 
 
@@ -40,23 +40,23 @@
 
 
 <meta property="og:title" content="关于最优化问题的一些想法" />
-<meta property="og:description" content="过去一年主要在研究VRP及其相关变种问题，也取得了很好的成绩。未来很长一段时间我应该没有机会再去深入这个问题了。感觉有必要做一些总结，特别是" />
+<meta property="og:description" content="过去一年主要在研究VRP及其相关变种问题，取得了一些成果。一直没有好好总结，特别是怎么从工程角度来看待这一问题，还有记录一些未来可拓展的方向" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://againest1.github.io/post/%E6%9D%82%E8%B0%88/%E4%B8%BA%E4%BB%80%E4%B9%88/" />
 <meta property="article:published_time" content="2020-07-26T23:11:05+08:00" />
 <meta property="article:modified_time" content="2020-07-26T23:11:05+08:00" />
 <meta itemprop="name" content="关于最优化问题的一些想法">
-<meta itemprop="description" content="过去一年主要在研究VRP及其相关变种问题，也取得了很好的成绩。未来很长一段时间我应该没有机会再去深入这个问题了。感觉有必要做一些总结，特别是">
+<meta itemprop="description" content="过去一年主要在研究VRP及其相关变种问题，取得了一些成果。一直没有好好总结，特别是怎么从工程角度来看待这一问题，还有记录一些未来可拓展的方向">
 <meta itemprop="datePublished" content="2020-07-26T23:11:05+08:00" />
 <meta itemprop="dateModified" content="2020-07-26T23:11:05+08:00" />
-<meta itemprop="wordCount" content="959">
+<meta itemprop="wordCount" content="931">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="关于最优化问题的一些想法"/>
-<meta name="twitter:description" content="过去一年主要在研究VRP及其相关变种问题，也取得了很好的成绩。未来很长一段时间我应该没有机会再去深入这个问题了。感觉有必要做一些总结，特别是"/>
+<meta name="twitter:description" content="过去一年主要在研究VRP及其相关变种问题，取得了一些成果。一直没有好好总结，特别是怎么从工程角度来看待这一问题，还有记录一些未来可拓展的方向"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -128,7 +128,7 @@
       <div class="post-meta">
         <span class="post-time"> 2020-07-26 </span>
         
-          <span class="more-meta"> 959 words </span>
+          <span class="more-meta"> 931 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -150,7 +150,7 @@
   </div>
 </div>
     <div class="post-content">
-      <p>过去一年主要在研究VRP及其相关变种问题，也取得了很好的成绩。未来很长一段时间我应该没有机会再去深入这个问题了。感觉有必要做一些总结，特别是怎么从工程角度来看待这一问题，并探讨一些未来可拓展的方向，下面的内容不涉及具体的方法，只是一些思考。</p>
+      <p>过去一年主要在研究VRP及其相关变种问题，取得了一些成果。一直没有好好总结，特别是怎么从工程角度来看待这一问题，还有记录一些未来可拓展的方向，下面的内容不涉及具体的方法，只是一些思考。</p>
 <h2 id="研究些什么">研究些什么？</h2>
 <p>研究约束最优化问题，其实是研究怎么在有限的资源情况下作出选择。我要如何看待我的目标，如何看待我的约束，如果是动态问题，研究怎么刻画各种不确定性，甚至我不知道我不知道什么。在这种情形下，我如何作出最优决策。更近一步，研究变量，约束，目标，不确定性，四体之间的互相联系和互相影响。</p>
 <h2 id="被忽略的约束">被忽略的约束</h2>
